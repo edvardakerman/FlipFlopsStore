@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Sky Blue Towel",
+        "description": "A soft, sky blue towel that brings the calming essence of the clear sky to your bath time routine. Perfect for everyday use and made from eco-friendly, absorbent material.",
+        "price": 20,
+        "image": "../public/towel_blue.jpg",
+        "imageAlt": "./public/towel_blue_alt.jpg"
+    },
+    {
+        "name": "Grapefruit Towel",
+        "description": "This vibrant grapefruit-colored towel adds a burst of energy to your bathroom. Soft and luxurious, it offers quick drying and a fresh pop of color to your day.",
+        "price": 22,
+        "image": "./public/towel_pink.jpg",
+        "imageAlt": "./public/towel_pink_alt.jpg"
+    },
+    {
+        "name": "Sunshine Towel",
+        "description": "Bright and cheerful, the Sunshine Towel in a golden yellow hue is perfect for beach days or brightening up your bathroom. Lightweight and highly absorbent, it brings the warmth of the sun to every use.",
+        "price": 21,
+        "image": "../public/towel_yellow.jpg",
+        "imageAlt": "./public/towel_yellow_alt.jpg"
+    }
+]

@@ -14,15 +14,17 @@
 
 <body>
     <div class="flex sticky top-0 justify-between p-4 bg-white items-center">
-        <span class="text-2xl">
+        <span class="text-3xl font-bold">
             Flip Flops
         </span>
         <span>
             <shopping-cart></shopping-cart>
         </span>
     </div>
-    <div class="flex items-center justify-center">
-        <product-gallery></product-gallery>
+    <div class="flex flex-col items-center justify-center mx-4">
+        <product-gallery gallery-title="Trending Flip Flops" data-url="data/trendingFlipFlops.json"></product-gallery>
+        <product-gallery gallery-title="Beach Towels" data-url="data/towels.json"></product-gallery>
+        <product-gallery gallery-title="Shop All Flip Flops" data-url="data/allFlipFlops.json"></product-gallery>
     </div>
 </body>
 

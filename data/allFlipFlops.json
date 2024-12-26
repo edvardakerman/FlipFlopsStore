@@ -1,0 +1,44 @@
+[
+    {
+        "name": "EcoWave Flip Flops",
+        "description": "Eco-friendly flip-flops with a refreshing blue and green color combination.",
+        "price": 30,
+        "image": "../public/green.jpg",
+        "imageAlt": "./public/green_alt.jpg"
+    },
+    {
+        "name": "PurpleHaze Flip Flops",
+        "description": "Stylish blue and purple flip-flops for casual outings.",
+        "price": 22,
+        "image": "./public/purple.jpg",
+        "imageAlt": "./public/purple_alt.jpg"
+    },
+    {
+        "name": "MidnightStride Flip Flops",
+        "description": "Classic black flip-flops that go with any outfit.",
+        "price": 18,
+        "image": "../public/black.jpg",
+        "imageAlt": "./public/black_alt.jpg"
+    },
+    {
+        "name": "Smurf Flip Flops",
+        "description": "Comfortable flip-flops with a stylish blue and light blue design.",
+        "price": 30,
+        "image": "./public/blue.jpg",
+        "imageAlt": "./public/blue_alt.jpg"
+    },
+    {
+        "name": "SunnyVibe Flip Flops",
+        "description": "Vibrant green and yellow flip-flops perfect for summer.",
+        "price": 20,
+        "image": "./public/yellow.jpg",
+        "imageAlt": "./public/yellow_alt.jpg"
+    },
+    {
+        "name": "Ocean Flip Flops",
+        "description": "Ocean-inspired blue flip-flops for beach adventures.",
+        "price": 28,
+        "image": "./public/ocean.jpg",
+        "imageAlt": "./public/ocean_alt.jpg"
+    }
+]

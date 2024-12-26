@@ -41,7 +41,7 @@ class Item extends HTMLElement {
     render() {
         this.shadow.innerHTML = `
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <div class="max-w-sm h-full flex flex-col justify-between mx-2">
+        <div class="max-w-sm h-full flex flex-col justify-between">
             <div class="overflow-hidden">
                 <img class="w-full h-auto object-cover" src="${this.image}" alt="Product Image">
             </div>

@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Smurf Flip Flops",
+        "description": "Comfortable flip-flops with a stylish blue and light blue design.",
+        "price": 30,
+        "image": "./public/blue.jpg",
+        "imageAlt": "./public/blue_alt.jpg"
+    },
+    {
+        "name": "SunnyVibe Flip Flops",
+        "description": "Vibrant green and yellow flip-flops perfect for summer.",
+        "price": 20,
+        "image": "./public/yellow.jpg",
+        "imageAlt": "./public/yellow_alt.jpg"
+    },
+    {
+        "name": "Ocean Flip Flops",
+        "description": "Ocean-inspired blue flip-flops for beach adventures.",
+        "price": 28,
+        "image": "./public/ocean.jpg",
+        "imageAlt": "./public/ocean_alt.jpg"
+    }
+]
