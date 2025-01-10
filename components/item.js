@@ -1,15 +1,15 @@
 class Item extends HTMLElement {
     constructor() {
         super();
+    }
+
+    connectedCallback() {
         this.shadow = this.attachShadow({ mode: 'open' });
         this.name = this.getAttribute('product-name') || 'Product Name';
         this.description = this.getAttribute('product-description') || 'Product description.';
         this.price = this.getAttribute('product-price') || 0;
         this.image = this.getAttribute('image-src') || './public/ocean.jpg';
-        this.imageAlt = this.getAttribute('image-alt') || 'Product Alt Image';
-    }
-
-    connectedCallback() {
+        this.imageAlt = this.getAttribute('image-alt') || './public/ocean_alt.jpg';
         this.render();
         this.addHoverEffect();
         this.addProductToCart();
