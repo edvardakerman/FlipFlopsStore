@@ -1,15 +1,16 @@
 class Item extends HTMLElement {
     constructor() {
         super();
+        this.shadow = this.attachShadow({ mode: 'open' });
+
+        this.name = this.getAttribute('product-name');
+        this.description = this.getAttribute('product-description');
+        this.price = this.getAttribute('product-price');
+        this.image = this.getAttribute('image-src');
+        this.imageAlt = this.getAttribute('image-alt');
     }
 
     connectedCallback() {
-        this.shadow = this.attachShadow({ mode: 'open' });
-        this.name = this.getAttribute('product-name') || 'Product Name';
-        this.description = this.getAttribute('product-description') || 'Product description.';
-        this.price = this.getAttribute('product-price') || 0;
-        this.image = this.getAttribute('image-src') || './public/ocean.jpg';
-        this.imageAlt = this.getAttribute('image-alt') || './public/ocean_alt.jpg';
         this.render();
         this.addHoverEffect();
         this.addProductToCart();
@@ -18,12 +19,10 @@ class Item extends HTMLElement {
     addHoverEffect() {
         const imgElement = this.shadow.querySelector('img');
 
-        // Mouse enters: Change to hover image
         imgElement.addEventListener('mouseenter', () => {
             imgElement.src = this.imageAlt;
         });
 
-        // Mouse leaves: Revert to the original image
         imgElement.addEventListener('mouseleave', () => {
             imgElement.src = this.image;
         });
@@ -39,6 +38,7 @@ class Item extends HTMLElement {
     }
 
     render() {
+
         this.shadow.innerHTML = `
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <div class="max-w-sm h-full flex flex-col justify-between">
@@ -53,7 +53,7 @@ class Item extends HTMLElement {
             <div class="flex justify-between items-center mt-auto pt-2">
             <custom-btn
                 text="Add to Cart"
-                custom-styles="hover:bg-blue-700"
+                custom-styles="bg-blue-500 text-white hover:bg-blue-700"
             ></custom-btn>
                 <p class="text-sm">$${this.price}</p>
             </div>

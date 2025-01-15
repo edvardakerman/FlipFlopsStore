@@ -49,10 +49,23 @@ class Cart extends HTMLElement {
         this.attachEventListeners(); // Reattach event listeners after re-rendering
     }
 
+    clearCart() {
+        this.items = []; // Clear the cart by resetting the items array
+        this.render();
+        this.attachEventListeners(); // Reattach event listeners after re-render
+    }
+
+    removeItem(index) {
+        this.items.splice(index, 1); // Remove the item from the cart based on the index
+        this.render();
+        this.attachEventListeners(); // Reattach event listeners after re-rendering
+    }
+
     attachEventListeners() {
         const cartIcon = this.shadow.querySelector('#cart');
         const closeCartButton = this.shadow.querySelector('#close-cart');
         const checkoutButton = this.shadow.querySelector("#checkout-button"); //custom-btn
+        const clearCartButton = this.shadow.querySelector("#clearCart-button");
 
         // Toggle the cart when clicking on the cart icon
         if (cartIcon) {
@@ -64,10 +77,16 @@ class Cart extends HTMLElement {
             closeCartButton.addEventListener('click', () => this.toggleCart());
         }
 
+        // Clear the cart when clicking the "Clear Cart" button
+        if (clearCartButton) {
+            clearCartButton.addEventListener('click', () => this.clearCart());
+        }
+
         // Attach event listeners for increase and decrease buttons
         this.items.forEach((item, index) => {
             const increaseButton = this.shadow.querySelector(`#increase-${index}`);
             const decreaseButton = this.shadow.querySelector(`#decrease-${index}`);
+            const removeButton = this.shadow.querySelector(`#remove-${index}`);
 
             if (increaseButton) {
                 increaseButton.addEventListener('click', () => this.increaseItemQuantity(index));
@@ -75,6 +94,10 @@ class Cart extends HTMLElement {
 
             if (decreaseButton) {
                 decreaseButton.addEventListener('click', () => this.decreaseItemQuantity(index));
+            }
+
+            if (removeButton) {
+                removeButton.addEventListener('click', () => this.removeItem(index));
             }
         });
 
@@ -88,38 +111,60 @@ class Cart extends HTMLElement {
             // Render the cart sidebar when the cart is open
             this.shadow.innerHTML = `
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-            <div class="fixed top-0 right-0 h-full bg-white shadow-lg transition-transform duration-300 w-80 flex flex-col justify-between">
+            <div class="fixed top-0 right-0 h-full bg-white shadow-lg transition-transform duration-300 w-96 flex flex-col justify-between">
                 <div class="p-4">
                     <div class="flex justify-between items-center">
                         <h1 class="font-bold">Your Cart</h1>
-                        <button id="close-cart" class="font-bold cursor-pointer">X</button>
+                        <custom-btn
+                            id="close-cart"
+                            text="X"
+                        ></custom-btn>
                     </div>
-                    <ul class="my-5">
+                    <ul class="my-5 overflow-y-auto" style="max-height: 70vh;">
                         ${this.items.length > 0 ? this.items.map((item, index) => `
                             <li class="flex justify-between my-2">
                                 <div class="flex flex-row">
                                     <div class="mr-2">
-                                        <img src="${item.image}" alt="${item.name}" class="w-10 h-15 object-cover">
+                                        <img src="${item.image}" alt="${item.name}" class="w-14 h-18 object-cover">
                                     </div>
-                                    <div class="flex flex-col">
+                                    <div class="flex flex-col justify-between">
                                         <span>${item.name}</span>
                                         <div>
-                                            <button id="decrease-${index}" class="font-bold">-</button>
+                                            <custom-btn
+                                                id="decrease-${index}"
+                                                text="-"
+                                            ></custom-btn>
                                             <span class="px-1">${item.quantity}</span>
-                                            <button id="increase-${index}" class="font-bold">+</button>
+                                            <custom-btn
+                                                id="increase-${index}"
+                                                text="+"
+                                            ></custom-btn>
                                         </div>
                                     </div>
                                 </div>
-                                <span>$${item.price * item.quantity}</span>
+                                <div class="flex flex-col items-end justify-between">
+                                    <span>$${item.price * item.quantity}</span>
+                                    <custom-btn
+                                        id="remove-${index}"
+                                        text="x"
+                                    ></custom-btn>
+                                </div>
                             </li>`).join('') : '<p>Your cart is empty</p>'}
                     </ul>
                 </div>
                 <div class="p-4">
+                    <div class="flex flex-row justify-between items-center space-x-2 mb-4">
                     <p class="font-bold">Total: $${this.items.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
+                    <custom-btn
+                        id="clearCart-button"
+                        text="Clear Cart"
+                        custom-styles="py-1 text-black border border-1 ${this.items.length === 0 ? 'opacity-50 cursor-not-allowed disabled' : 'hover:bg-red-400'}"
+                    ></custom-btn>
+                    </div>
                     <custom-btn
                         id="checkout-button"
                         text="Checkout"
-                        custom-styles="w-full py-2 ${this.items.length === 0 ? 'opacity-50 cursor-not-allowed disabled' : 'hover:bg-blue-700'}"
+                        custom-styles="bg-blue-500 text-white hover:bg-blue-700 w-full py-2 ${this.items.length === 0 ? 'opacity-50 cursor-not-allowed disabled' : 'hover:bg-blue-700'}"
                     ></custom-btn>
                 </div>
             </div>`;
@@ -128,7 +173,10 @@ class Cart extends HTMLElement {
             this.shadow.innerHTML = `
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
             <div class="relative">
-                <span id="cart" class="cursor-pointer text-xl float-right hover:text-gray-500">Cart ${this.items.length > 0 ? `(${this.items.reduce((total, item) => total + item.quantity, 0)})` : ''}</span>
+                <custom-btn
+                    id="cart"
+                    text="Cart ${this.items.length > 0 ? `(${this.items.reduce((total, item) => total + item.quantity, 0)})` : ''}"
+                ></custom-btn>
             </div>`;
         }
     }
